@@ -1,5 +1,6 @@
 const Post = require("../models/post.model");
 const express = require("express");
+const crudController = require("./crud.controller");
  const router = express.Router();
 
 
@@ -12,6 +13,7 @@ const express = require("express");
     }
   });
   
+
   router.get("/", async (req, res) => {
     try {
       // const posts = await Post.find().lean().exec();  // here we get the userId and tagIds but we do not want Id we want that id data like user_id actual user data and tag_id actual tags document
@@ -25,7 +27,8 @@ const express = require("express");
       res.status(500).send(err.message);
     }
   });
-  
+
+
   router.get("/:id", async (req, res) => {
     // this id is post id which i get from time of creating the post
     try {
@@ -40,6 +43,8 @@ const express = require("express");
       res.status(500).send(err.message);
     }
   });
+
+  // router.get("/:id",crudController(Post,{ path: "user_id", select: { email: 1 } }).get) // using crudController for populate data
   
   router.patch("/:id", async (req, res) => {
     try {

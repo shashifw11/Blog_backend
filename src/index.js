@@ -18,7 +18,6 @@ app.use(express.json()); // this middleware now allow express to read the reques
 
 
 
-
 // here we import all the user route handlers
 // but how i know to use this route handler when request first comes on index.js file how it find that request should go to user controller file or another file
 app.use("/users" , userController)

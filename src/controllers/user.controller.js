@@ -1,5 +1,6 @@
 const User = require("../models/user.model")
 const express = require("express");
+const crudController = require("./crud.controller");
 const router = express.Router();
   // now we are not importing very big object like app for doing a simple task 
   // we are importing a object which has only these routing related functionality.
@@ -62,6 +63,12 @@ router.post("/", async (req, res) => {
       return res.status(500).send(err.message);
     }
   });
+
+// router.post("/",crudController(User).post)
+// router.get("/",crudController(User).get)
+// router.get("/:id",crudController(User).getOne)
+// router.patch("/:id",crudController(User).updateOne)
+// router.delete("/:id",crudController(User).deleteOne)
   
 
   module.exports = router
