@@ -1,6 +1,11 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const connect = require("./configs/db")
+
+const userController = require("./controllers/user.controller") 
+const tagController = require("./controllers/tag.controller");
+const commentController = require("./controllers/comment.controller");
+const postController = require("./controllers/post.controller");
+
 const app = express();
 
 app.use(express.json()); // this middleware now allow express to read the request boady
@@ -12,10 +17,7 @@ app.use(express.json()); // this middleware now allow express to read the reques
 // };
 
 
-const userController = require("./controllers/user.controller") 
-const tagController = require("./controllers/tag.controller");
-const commentController = require("./controllers/comment.controller");
-const postController = require("./controllers/post.controller");
+
 
 // here we import all the user route handlers
 // but how i know to use this route handler when request first comes on index.js file how it find that request should go to user controller file or another file
@@ -26,14 +28,7 @@ app.use("/posts",postController)
 // when i import that route handler inside.js so we have to tell express explicetly wheneever the routs start with /user than you need to go inside the userController file and find the correct route handler
 
 
-app.listen(2345, async () => {
-  try {
-    await connect();
-    console.log("listening on port 2345");
-  } catch (err) {
-    console.log(err.message);
-  }
-});
+module.exports = app ;
 
 
 
